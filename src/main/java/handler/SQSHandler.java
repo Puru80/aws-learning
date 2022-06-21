@@ -3,7 +3,7 @@ package handler;
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 import com.amazonaws.services.lambda.runtime.events.SQSEvent;
-import junit.framework.Test;
+import helper.SNSHelper;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -48,7 +48,8 @@ public class SQSHandler implements RequestHandler<SQSEvent, String> {
                 .credentialsProvider(ProfileCredentialsProvider.create())
                 .build();
 
-
+        SNSHelper helper = new SNSHelper();
+//        helper.pubTopic(client, );
 
         return null;
     }
