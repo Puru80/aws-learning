@@ -5,8 +5,8 @@ Resources:
       Timeout: 300
       MemorySize: 128
       Handler: handler.SQSHandler
-      CodeUri: s3://tdoso-test-1-s3/58933d147c600672e0e57b72ffd3d890
-      Runtime: java8
+      CodeUri: s3://tdoso-test-1-s3/a3c1cbdf731219b592e5258337162af4
+      Runtime: java11
       Architectures:
       - x86_64
     Metadata:

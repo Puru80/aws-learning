@@ -46,7 +46,8 @@ public class TodosFunctions {
                         null);
             }
             else{
-                todo.setId(UUID.randomUUID().toString());
+                String todoId = UUID.randomUUID().toString();
+                todo.setId(todoId);
                 todo.setEmail(todosRequest.getEmail());
                 todo.setTask(todosRequest.getTask());
                 todo.setDescription(todosRequest.getDescription());
@@ -54,7 +55,7 @@ public class TodosFunctions {
 
                 mapper.save(todo);
 
-                return new TodosResponse("Todo Added Successfully", todo);
+                return new TodosResponse("Todo Added Successfully", todoId);
             }
 
         }catch (AmazonDynamoDBException e){

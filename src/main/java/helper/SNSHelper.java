@@ -7,7 +7,9 @@ import software.amazon.awssdk.services.sns.model.SnsException;
 
 public class SNSHelper {
 
-    public void pubTopic(SnsClient snsClient, String message, String topicArn) {
+//    ARN: arn:aws:sns:ap-south-1:033211574546:todoNotificationTopic
+
+    public String pubTopic(SnsClient snsClient, String message, String topicArn) {
         try {
             PublishRequest request = PublishRequest.builder()
                     .message(message)
@@ -15,11 +17,16 @@ public class SNSHelper {
                     .build();
 
             PublishResponse result = snsClient.publish(request);
-            System.out.println(result.messageId() + " Message sent. Status is " + result.sdkHttpResponse().statusCode());
+//            System.out.println(result.messageId() + " Message sent. Status is " +
+//                    result.sdkHttpResponse().statusCode());
+
+            return result.messageId();
 
         } catch (SnsException e) {
             System.err.println(e.awsErrorDetails().errorMessage());
             System.exit(1);
         }
+
+        return "Some Error Occurred. Please try again";
     }
 }

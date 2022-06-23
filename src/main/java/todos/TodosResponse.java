@@ -2,34 +2,34 @@ package todos;
 
 public class TodosResponse {
     private String message;
-    private Todos todo;
+    private String todoId;
 
-    public TodosResponse(String message, Todos todo) {
+    public TodosResponse(String message, String todoId) {
         this.message = message;
-        this.todo = todo;
+        this.todoId = todoId;
     }
 
     public String getMessage() {
         return message;
     }
 
-    public Todos getTodo() {
-        return todo;
+    public String getTodoId() {
+        return todoId;
     }
 
     public void setMessage(String message) {
         this.message = message;
     }
 
-    public void setTodo(Todos todo) {
-        this.todo = todo;
+    public void setTodoId(String todoId) {
+        this.todoId = todoId;
     }
 
     @Override
     public String toString() {
         return "{" +
                 "\"message=\" " + message + '\"' +
-                ", \"todo\"= " + todo +
+                ", \"todo\"= " + todoId +
                 "\"}";
     }
 }

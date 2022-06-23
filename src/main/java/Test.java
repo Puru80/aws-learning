@@ -1,11 +1,19 @@
+import com.amazonaws.services.lambda.runtime.events.SNSEvent;
+import helper.SNSHelper;
+import software.amazon.awssdk.auth.credentials.ProfileCredentialsProvider;
+import software.amazon.awssdk.regions.Region;
+import software.amazon.awssdk.services.sns.SnsClient;
+
 public class Test {
     /*public static void main(String[] args) {
+        SNSHelper helper = new SNSHelper();
+
         SnsClient client = SnsClient.builder().
                 region(Region.AP_SOUTH_1)
                 .credentialsProvider(ProfileCredentialsProvider.create())
                 .build();
 
-        pubTopic(client, "Hello World! ! ! !",
+        helper.pubTopic(client, "Hello World! ! ! !",
                 "arn:aws:sns:ap-south-1:033211574546:todoNotificationTopic");
     }*/
 

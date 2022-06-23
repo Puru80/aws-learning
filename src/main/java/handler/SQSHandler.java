@@ -4,6 +4,7 @@ import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 import com.amazonaws.services.lambda.runtime.events.SQSEvent;
 import helper.SNSHelper;
+import org.json.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -14,10 +15,13 @@ import todos.TodosFunctions;
 import todos.TodosRequest;
 import todos.TodosResponse;
 
+//Handler to add TodoItem from SQS Trigger
 public class SQSHandler implements RequestHandler<SQSEvent, String> {
 
     @Override
     public String handleRequest(SQSEvent sqsEvent, Context context) {
+        JSONArray arr = new JSONArray();
+
         for(SQSEvent.SQSMessage msg : sqsEvent.getRecords()){
             String message = msg.getBody();
 
@@ -25,6 +29,7 @@ public class SQSHandler implements RequestHandler<SQSEvent, String> {
 
             JSONParser parser = new JSONParser();
             JSONObject responseJson = new JSONObject();
+
             TodosFunctions functions = new TodosFunctions();
 
             try {
@@ -35,8 +40,13 @@ public class SQSHandler implements RequestHandler<SQSEvent, String> {
                         event.get("description").toString()
                 ));
 
+                /*responseJson.put("message", todosResponse.getMessage());
+                responseJson.put("body", parser.parse(todosResponse.getTodo().toString()));*/
+
                 responseJson.put("message", todosResponse.getMessage());
-                responseJson.put("body", parser.parse(todosResponse.getTodo().toString()));
+                responseJson.put("todoId", todosResponse.getTodoId());
+
+                arr.put(responseJson);
 
             } catch (ParseException e) {
                 e.printStackTrace();
@@ -49,7 +59,8 @@ public class SQSHandler implements RequestHandler<SQSEvent, String> {
                 .build();
 
         SNSHelper helper = new SNSHelper();
-//        helper.pubTopic(client, );
+        helper.pubTopic(client, arr.toString(),
+                "arn:aws:sns:ap-south-1:033211574546:todoNotificationTopic");
 
         return null;
     }
