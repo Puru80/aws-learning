@@ -8,7 +8,6 @@ import org.json.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-import software.amazon.awssdk.auth.credentials.ProfileCredentialsProvider;
 import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.sns.SnsClient;
 import todos.TodosFunctions;
@@ -55,7 +54,6 @@ public class SQSHandler implements RequestHandler<SQSEvent, String> {
 
         SnsClient client = SnsClient.builder().
                 region(Region.AP_SOUTH_1)
-                .credentialsProvider(ProfileCredentialsProvider.create())
                 .build();
 
         SNSHelper helper = new SNSHelper();

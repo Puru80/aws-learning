@@ -1,19 +1,13 @@
-import com.amazonaws.services.lambda.runtime.events.SNSEvent;
-import helper.SNSHelper;
-import software.amazon.awssdk.auth.credentials.ProfileCredentialsProvider;
-import software.amazon.awssdk.regions.Region;
-import software.amazon.awssdk.services.sns.SnsClient;
-
 public class Test {
     /*public static void main(String[] args) {
         SNSHelper helper = new SNSHelper();
 
         SnsClient client = SnsClient.builder().
                 region(Region.AP_SOUTH_1)
-                .credentialsProvider(ProfileCredentialsProvider.create())
+                .credentialsProvider(ProfileCredentialsProvider.builder().build())
                 .build();
 
-        helper.pubTopic(client, "Hello World! ! ! !",
+        pubTopic(client, "Hello World! ! ! !",
                 "arn:aws:sns:ap-south-1:033211574546:todoNotificationTopic");
     }*/
 
@@ -45,11 +39,13 @@ public class Test {
                     .build();
 
             PublishResponse result = snsClient.publish(request);
-            System.out.println(result.messageId() + " Message sent. Status is " + result.sdkHttpResponse().statusCode());
+            System.out.println(result.messageId() + " Message sent. Status is " +
+                    result.sdkHttpResponse().statusCode());
 
         } catch (SnsException e) {
             System.err.println(e.awsErrorDetails().errorMessage());
             System.exit(1);
         }
     }*/
+
 }
