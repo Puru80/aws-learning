@@ -39,9 +39,6 @@ public class SQSHandler implements RequestHandler<SQSEvent, String> {
                         event.get("description").toString()
                 ));
 
-                /*responseJson.put("message", todosResponse.getMessage());
-                responseJson.put("body", parser.parse(todosResponse.getTodo().toString()));*/
-
                 responseJson.put("message", todosResponse.getMessage());
                 responseJson.put("todoId", todosResponse.getTodoId());
 

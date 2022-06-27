@@ -13,12 +13,12 @@ import java.util.UUID;
 public class TodosFunctions {
 
     private final AmazonDynamoDB client;
-//            AmazonDynamoDBClientBuilder.standard().build();
 
     public TodosFunctions() {
         this.client = AmazonDynamoDBClientBuilder.standard().build();;
     }
 
+    //Main Fn for testing lambda fns
     /*public static void main(String[] args) {
         System.out.println(addTodo(new TodosRequest(
                 "puru.agar99@gmail.com",
