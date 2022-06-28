@@ -16,7 +16,7 @@ public class TodosHandler implements RequestStreamHandler {
     @Override
     public void handleRequest(InputStream inputStream, OutputStream outputStream,
                               Context context) throws IOException {
-        /*JSONParser parser = new JSONParser();
+        JSONParser parser = new JSONParser();
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
         JSONObject responseJson = new JSONObject();
         TodosFunctions functions = new TodosFunctions();
@@ -30,7 +30,7 @@ public class TodosHandler implements RequestStreamHandler {
             ));
 
             responseJson.put("message", todosResponse.getMessage());
-            responseJson.put("body", todosResponse.getTodo().toString());
+            responseJson.put("body", todosResponse.getTodoId());
 
         } catch (ParseException e) {
             e.printStackTrace();
@@ -38,6 +38,6 @@ public class TodosHandler implements RequestStreamHandler {
 
         OutputStreamWriter writer = new OutputStreamWriter(outputStream, "UTF-8");
         writer.write(responseJson.toString());
-        writer.close();*/
+        writer.close();
     }
 }

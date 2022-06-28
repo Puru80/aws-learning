@@ -49,6 +49,7 @@ public class SQSHandler implements RequestHandler<SQSEvent, String> {
             }
         }
 
+        //Publishing message to SNS Topic
         SnsClient client = SnsClient.builder().
                 region(Region.AP_SOUTH_1)
                 .build();
