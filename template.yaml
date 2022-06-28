@@ -1,0 +1,42 @@
+WSTemplateFormatVersion : '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: A sample SAM template for deploying Lambda functions.
+
+Resources:
+  APIGatewayLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      Timeout: 300
+      MemorySize: 512
+      Handler: handler.APIGatewayHandler
+      CodeUri: ./
+      Runtime: java11
+      Architectures:
+        - x86_64
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /req
+            Method: POST
+    Metadata:
+      SamResourceId: APIFunction
+
+  TodosLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      Timeout: 300
+      MemorySize: 512
+      Handler: handler.TodosHandler
+      CodeUri: ./
+      Runtime: java11
+      Architectures:
+        - x86_64
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /todo
+            Method: POST
+    Metadata:
+      SamResourceId: TodosFunction
